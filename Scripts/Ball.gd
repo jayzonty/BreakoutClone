@@ -27,6 +27,7 @@ func _fixed_process(delta):
 	if get_pos().y > get_viewport_rect().end.y:
 		# Update number of lives
 		get_node( "/root/World" ).lives -= 1
+		get_node( "/root/World" ).numBallsInField -= 1
 		
 		# Remove ball from play
 		queue_free()

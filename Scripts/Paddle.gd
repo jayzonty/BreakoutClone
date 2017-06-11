@@ -17,8 +17,11 @@ func _fixed_process(delta):
 
 func _input(event):
 	if ( event.type == InputEvent.MOUSE_BUTTON ) && ( event.is_pressed() ):
-		if ( !get_node( "/root/World" ).isGameOver() ):
+		var worldNode = get_node( "/root/World" )
+		if ( !worldNode.isGameOver() && ( worldNode.numBallsInField == 0 ) ):
 			var ball = ballScene.instance()
 			ball.set_pos( get_pos() - Vector2( 0, 16 ) )
 		
-			get_node( "/root/World" ).add_child( ball )
+			worldNode.add_child( ball )
+			
+			worldNode.numBallsInField += 1

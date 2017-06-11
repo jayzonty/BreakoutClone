@@ -1,5 +1,9 @@
 extends Node2D
 
+# Keep track of number of balls in
+# the field
+var numBallsInField
+
 # External variable for setting
 # number of levels
 export var numLevels = 3
@@ -33,6 +37,8 @@ func _ready():
 	lives = initialLives
 	levelIndex = 1
 	isWin = false
+	
+	numBallsInField = 0
 	
 	# Update labels for score and lives
 	updateScoreLabel()
@@ -107,6 +113,9 @@ func loadLevel( index ):
 	
 	# Update blocks remaining
 	blocksRemaining = levelNode.get_child_count()
+	
+	# Reset balls in field
+	numBallsInField = 0
 
 func handleLevelFinished():
 	get_node( "Ball" ).queue_free()
